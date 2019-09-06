@@ -48,7 +48,7 @@ const Generos = () => {
     return (
         <div className='container'>
             <h1>Generos</h1>
-            <Link to='/generos/novo' className="btn btn-primary my-2">Novo genêros</Link>
+            <Link to='/generos/novo' className="btn btn-primary my-2">Novo genêross</Link>
             <table className='table'>
                 <thead className="thead-dark">
                     <tr>
