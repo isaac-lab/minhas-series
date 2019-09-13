@@ -2,19 +2,19 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 
-const Generos = () => {
+const Series = () => {
     const [data, setdata] = useState([])
     useEffect(() => {
         axios
-            .get('/api/genres/')
+            .get('/api/series/')
             .then(res => {
                 setdata(res.data.data)
             })
     }, [])
 
-    const deletaGenero = id => {
+    const deletaSerie = id => {
         axios
-        .delete('/api/genres/' + id)
+        .delete('/api/series/' + id)
         .then(res => {
             const filtrado = data.filter(item => item.id !== id)
             setdata(filtrado)
@@ -27,8 +27,8 @@ const Generos = () => {
                 <th scope='row'>{record.id}</th>
                 <td>{record.name}</td>
                 <td>
-                    <button className="btn btn-danger mx-1" onClick={() => deletaGenero(record.id)}>Apagar</button>
-                    <Link to={'generos/' +  record.id} className="btn btn-warning mx-1">Editar</Link>
+                    <button className="btn btn-danger mx-1" onClick={() => deletaSerie(record.id)}>Apagar</button>
+                    <Link to={'series/' +  record.id} className="btn btn-warning mx-1">Info</Link>
                 </td>
             </tr>
         )
@@ -37,10 +37,10 @@ const Generos = () => {
     if (data.length === 0) {
         return (
             <div className='container'>
-                <h1>Genêros</h1>
-                <Link to='/generos/novo' className="btn btn-primary my-2">Novo genêro</Link>
+                <h1>Séries</h1>
+                <Link to='/series/novo' className="btn btn-primary my-2">Nova Série</Link>
                 <div className='alert alert-warning' role='alert'>
-                    Você não possui genêros criados.
+                    Você não possui séries criadas.
                 </div>
             </div>
         )
@@ -48,8 +48,8 @@ const Generos = () => {
 
     return (
         <div className='container'>
-            <h1>Genêros</h1>
-            <Link to='/generos/novo' className="btn btn-primary my-2">Novo genêro</Link>
+            <h1>Séries</h1>
+            <Link to='/series/novo' className="btn btn-primary my-2">Nova Série</Link>
             <table className='table'>
                 <thead className="thead-dark">
                     <tr>
@@ -66,4 +66,4 @@ const Generos = () => {
     )
 }
 
-export default Generos;
+export default Series;
